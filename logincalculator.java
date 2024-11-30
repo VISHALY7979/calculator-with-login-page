@@ -46,7 +46,7 @@ public class logincalculator{
                 //check username and password correct
                 if(username.equals("Bishal")&& password.equals("797075")){
 
-                    JOptionPane.showMessageDialog(frame, "welcome" +username);
+                    //JOptionPane.showMessageDialog(frame, "welcome" +username);
                     //close the login window
                     frame.dispose();
                     //call calculator class
