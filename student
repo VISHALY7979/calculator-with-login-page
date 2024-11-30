@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Student {
+    String name;
+    int id;
+    double marks;
+
+    public Student(String name, int id, double marks) {
+        this.name = name;
+        this.id = id;
+        this.marks = marks;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Name: " + name + ", Marks: " + marks;
+    }
+}
+
+public class StudentRecords {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Add Student");
+            System.out.println("2. Remove Student");
+            System.out.println("3. Display All Students");
+            System.out.println("4. Exit");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    // Add a student
+                    System.out.print("Enter ID: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+                    System.out.print("Enter Name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter Marks: ");
+                    double marks = scanner.nextDouble();
+                    students.add(new Student(name, id, marks));
+                    System.out.println("Student added successfully!");
+                    break;
+
+                case 2:
+                    // Remove a student
+                    System.out.print("Enter ID of student to remove: ");
+                    int removeId = scanner.nextInt();
+                    boolean removed = false;
+                    for (Student s : students) {
+                        if (s.id == removeId) {
+                            students.remove(s);
+                            System.out.println("Student removed successfully!");
+                            removed = true;
+                            break;
+                        }
+                    }
+                    if (!removed) {
+                        System.out.println("Student with ID " + removeId + " not found.");
+                    }
+                    break;
+
+                case 3:
+                    // Display all students
+                    System.out.println("\nStudent Records:");
+                    if (students.isEmpty()) {
+                        System.out.println("No records found.");
+                    } else {
+                        for (Student s : students) {
+                            System.out.println(s);
+                        }
+                    }
+                    break;
+
+                case 4:
+                    // Exit
+                    System.out.println("Exiting the program.");
+                    scanner.close();
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        }
+    }
+}
